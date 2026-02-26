@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Case File #003</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+
+    <div class="container">
+        
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #2026-CSD</p>
+                <p>SUBJECT: ENGINEERING STUDENT</p>
+                <p>LOCATION: KARNATAKA, IN</p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="board.html" class="nav-btn"><span class="tab-number">01</span> // HOME</a>
+                <a href="projects.html" class="nav-btn"><span class="tab-number">02</span> // EVIDENCE</a>
+                <a href="about.html" class="nav-btn"><span class="tab-number">03</span> // PROFILE</a>
+                <a href="resume.html" class="nav-btn"><span class="tab-number">04</span> // RECORDS</a>
+                <a href="contact.html" class="nav-btn active"><span class="tab-number">05</span> // CONTACT</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <h2>SUBMIT A TIP</h2>
+        <p style="margin-bottom: 2rem;">Have a project? Need a developer? Fill out the report below.</p>
+        
+        <div class="contact-form">
+            <form id="tip-form" action="https://api.web3forms.com/submit" method="POST">
+                
+                <input type="hidden" name="access_key" value="300c8584-ae18-41ba-8126-eab3cfda08d0">
+                <input type="hidden" name="subject" value="New Evidence Submitted via Portfolio">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div style="margin-bottom: 2rem;">
+                    <label class="form-label">INFORMANT NAME:</label>
+                    <input type="text" name="name" class="form-input" placeholder="Enter your name" required>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <label class="form-label">SECURE EMAIL:</label>
+                    <input type="email" name="email" class="form-input" placeholder="name@company.com" required>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <label class="form-label">INTELLIGENCE (MESSAGE):</label>
+                    <textarea name="message" class="form-input" rows="5" placeholder="Brief the mission details..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn">TRANSMIT DATA</button>
+                
+                <p id="form-status" style="margin-top: 1.5rem; font-weight: bold; font-family: var(--font-report); display: none;"></p>
+            </form>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <p>OR CONTACT DIRECTLY VIA:</p>
+                <div style="margin-top: 1rem; font-size: 1.5rem;">
+                    <a href="https://www.linkedin.com/in/nitin-makkittaya-1179022a1/" target="_blank" style="color: var(--gold); margin: 0 10px;">LINKEDIN</a> //
+                    <a href="https://github.com/NitinMakkittaya" target="_blank" style="color: var(--gold); margin: 0 10px;">GITHUB</a>
+                </div>
+            </div>
+        </div>
+
+        <footer><p>CASE FILE CLOSED // 2026</p></footer>
+    </div>
+    
+    <script src="script.js"></script>
+
+    <script>
+        const form = document.getElementById('tip-form');
+        const result = document.getElementById('form-status');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stops the page from reloading
+            
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            result.style.display = "block";
+            result.style.color = "var(--paper-dim)";
+            result.innerText = "ENCRYPTING AND TRANSMITTING...";
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    result.innerText = "INTELLIGENCE TRANSMITTED SUCCESSFULLY.";
+                    result.style.color = "#4caf50"; // Green success text
+                } else {
+                    result.innerText = json.message;
+                    result.style.color = "var(--rust)"; // Red error text
+                }
+            })
+            .catch(error => {
+                result.innerText = "TRANSMISSION FAILED. CHECK CONNECTION.";
+                result.style.color = "var(--rust)";
+            })
+            .then(function() {
+                form.reset(); // THIS CLEARS THE TEXT BOXES
+                
+                // Hides the success message after 5 seconds
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 5000); 
+            });
+        });
+    </script>
+</body>
+</html>

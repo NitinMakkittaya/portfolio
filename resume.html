@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Case File #003</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .pdf-container {
+            width: 100%;
+            height: 800px; /* Tall enough for a full page */
+            border: 2px solid #ccc;
+        }
+        
+        /* Mobile Adjustment for PDF height */
+        @media(max-width: 768px) {
+            .pdf-container {
+                height: 500px;
+            }
+            .resume-paper {
+                padding: 1rem; /* Less padding on mobile to give PDF more room */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+
+    <div class="container">
+        
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #2026-CSD</p>
+                <p>SUBJECT: ENGINEERING STUDENT</p>
+                <p>LOCATION: KARNATAKA, IN</p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="board.html" class="nav-btn"><span class="tab-number">01</span> // HOME</a>
+                <a href="projects.html" class="nav-btn"><span class="tab-number">02</span> // EVIDENCE</a>
+                <a href="about.html" class="nav-btn"><span class="tab-number">03</span> // PROFILE</a>
+                <a href="resume.html" class="nav-btn active"><span class="tab-number">04</span> // RECORDS</a>
+                <a href="contact.html" class="nav-btn"><span class="tab-number">05</span> // CONTACT</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <div style="text-align: right; margin-bottom: 1rem;">
+            <a href="resume.pdf" download="YourName_Resume.pdf" class="btn">DOWNLOAD OFFICIAL PDF</a>
+        </div>
+        
+        <div class="resume-paper">
+            <div class="stamp stamp-red" style="top: 10%; right: 5%; border-width: 8px; font-size: 2rem; animation-delay: 0.4s;">DECLASSIFIED</div>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="font-family: 'Courier Prime'; font-size: 2.5rem; color: #000; letter-spacing: 0;">DIGITIZED RECORD</h1>
+                <p style="color: #000;">REF NO: 2026-CV-ENG // SCANNED DOCUMENT</p>
+            </div>
+
+            <object data="resume.pdf" type="application/pdf" class="pdf-container">
+                <div style="text-align: center; padding: 2rem; border: 2px dashed #000;">
+                    <p style="color: #000; font-weight: bold;">[ERROR: PREVIEW UNAVAILABLE]</p>
+                    <p style="color: #333;">The browser interface cannot display the classified document directly.</p>
+                    <br>
+                    <a href="resume.pdf" class="btn" style="border-color: #000; color: #000;">DOWNLOAD FILE MANUALLY</a>
+                </div>
+            </object>
+            <div style="position: absolute; bottom: 50px; right: 50px; width: 100px; height: 100px; border: 5px solid rgba(139, 69, 19, 0.15); border-radius: 50%; pointer-events: none;"></div>
+        </div>
+        
+        <footer><p>CASE FILE CLOSED // 2026</p></footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Case File #003</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+
+    <div class="container">
+        
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #2026-CSD</p>
+                <p>SUBJECT: ENGINEERING STUDENT</p>
+                <p>LOCATION: KARNATAKA, IN</p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="board.html" class="nav-btn"><span class="tab-number">01</span> // HOME</a>
+                <a href="projects.html" class="nav-btn"><span class="tab-number">02</span> // EVIDENCE</a>
+                <a href="about.html" class="nav-btn active"><span class="tab-number">03</span> // PROFILE</a>
+                <a href="resume.html" class="nav-btn"><span class="tab-number">04</span> // RECORDS</a>
+                <a href="contact.html" class="nav-btn"><span class="tab-number">05</span> // CONTACT</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <h2>SUSPECT PROFILE</h2>
+        <div class="mugshot-container">
+            <div class="stamp stamp-red" style="top: 50px; left: 150px; transform: rotate(-25deg); animation-delay: 1s;">HIGHLY DANGEROUS</div>
+            <div class="mugshot">
+                <img src="https://via.placeholder.com/250x300?text=PHOTO" alt="Profile" style="width:100%; height:100%; object-fit: cover; opacity: 0.8; filter: grayscale(100%) contrast(1.2);">
+            </div>
+            <div class="bio-text">
+                <p><strong>NAME:</strong> [NITIN MAKKITTAYA]</p>
+                <p><strong>OCCUPATION:</strong> ENGINEERING STUDENT</p>
+                <p><strong>KNOWN ASSOCIATES:</strong> VSCODE, GITHUB</p>
+                <br>
+                <p>The suspect is a highly motivated 3rd Year student obsessed with the intersection of algorithms and interface design. Unlike typical engineers, the suspect possesses strong communication skills and an eye for <span class="redacted">vintage design</span>.</p>
+                <br>
+                
+                <p style="color: var(--gold); margin-top: 1.5rem; letter-spacing: 2px;">>> THREAT ASSESSMENT MATRIX:</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-column">
+                        <h4 class="skill-header">CLASSIFICATION: FRONT-END</h4>
+                        <ul class="skill-list">
+                            <li><span class="skill-level">[█████░░░░░]</span> HTML / CSS3</li>
+                            <li><span class="skill-level">[████░░░░░░]</span> JAVASCRIPT</li>
+                            <li><span class="skill-level">[███░░░░░░░]</span> REACT</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-column">
+                        <h4 class="skill-header">CLASSIFICATION: BACK-END</h4>
+                        <ul class="skill-list">
+                            <li><span class="skill-level">[████░░░░░░]</span> PYTHON</li>
+                            <li><span class="skill-level">[███░░░░░░░]</span> PHP</li>
+                            <li><span class="skill-level">[████░░░░░░]</span> JAVA</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-column">
+                        <h4 class="skill-header">CLASSIFICATION: SYSTEMS & DATA</h4>
+                        <ul class="skill-list">
+                            <li><span class="skill-level">[█████░░░░░]</span> C / C++</li>
+                            <li><span class="skill-level">[████░░░░░░]</span> MYSQL / SQLITE</li>
+                            <li><span class="skill-level">[████░░░░░░]</span> MONGODB</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <footer><p>CASE FILE CLOSED // 2026</p></footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

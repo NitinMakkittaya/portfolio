@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #D</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #004-EROSION</p>
+                <p>STATUS: <span style="color: var(--rust)">ACTIVE SURVEILLANCE</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">LIVE NATIONAL DEPLOYMENT</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">TIER 1 - DIRECTORATE</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">CLASSIFIED</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #004: <span class="highlight-tape">THE EROSION SYNDICATE</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">The objective was to track a silent, relentless killer: the climate, slowly executing the world's most ancient monuments. We needed a nationwide surveillance net capable of predicting structural assassination before the heritage sites collapsed into dust. I engineered a multi-tiered intelligence apparatus where live meteorological informants feed data to an algorithmic oracle, while a forensic vision engine interrogates photographic evidence for microscopic fractures.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Precinct Hub:</strong> Python, Flask (Command center and secure routing)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Vault:</strong> SQLITE (Immutable ledger of heritage sites, coordinates, and soil bases)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Informant:</strong> Open-Meteo API (Active wiretap on live global weather conditions)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Oracle:</strong> Scikit-Learn / Random Forest (Predictive threat assessment pipeline)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Visual Interrogator:</strong> OpenCV (Canny Edge detection and morphological fracture mapping)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Shadow Brokers:</strong> Celery & Redis/Memurai (Asynchronous message queue for background dossier generation)</li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">The investigation utilizes a decentralized intelligence network to preempt physical decay:</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Stakeout (Live Telemetry):</strong> The Flask server maintains a constant wiretap on the informant (Open-Meteo API), pulling live metrics (temperature, precipitation, humidity) for targeted coordinates locked in the PostgreSQL Vault.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Forensic Lab (Material Physics):</strong> The system doesn't rely on gut feelings; it uses hard math. The engine subjects the live telemetry to Hooke's Law, calculating exact thermal stress (in Megapascals) and kinematic erosion indices against the specific physical constants (Young's Modulus, Porosity) of the monument's building materials.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Interrogation (Computer Vision):</strong> When physical evidence (imagery) is submitted, the OpenCV engine strips away the noise. It deploys morphological transformations and edge detection to expose hidden fissures in red, while isolating mineral discoloration in blue, forcing the image to confess its exact percentage of degradation.</li>
+                    
+                    <li style="margin-bottom: 0.5rem;"><strong>The Shadow Drop (Async Queues):</strong> When the investigator demands a full PDF dossier, the main server doesn't freeze. The request is slipped to the Shadow Brokers (Celery and Redis). They compile the heavy report in the dark and notify the dashboard only when the drop is ready, ensuring the precinct never drops its tail on the live targets.</li>
+                </ul>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">The system effectively outsmarts the slow decay of history. It delivers a preemptive, multi-layered threat matrix that brings ancient structural vulnerabilities into glaring daylight. By hijacking global meteorological data and pairing it with deep statistical learning, raw material physics, and computer vision, the project achieves a highly accurate preservation radar without requiring the installation of multi-million-dollar, on-site IoT hardware.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Asynchronous Dossier Protocol:</strong> Utilizes Celery task queues and a Redis message broker to compile heavy PDF reports in the background, ensuring the live surveillance dashboard never lags or blocks during an active monitoring session.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Spectro-Structural Vision Engine:</strong> The optical interrogation is explicitly formatted to isolate structural loss (physical cracks) from mineral decay (surface discoloration), outputting an undeniable severity classification from SAFE to CRITICAL.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Mathematical Physics Engine:</strong> By abandoning basic temperature thresholds and implementing strict physical laws (Thermal Expansion Coefficients, Volumetric Ice Wedging), the system allows the investigator to quantify threat levels in absolute, undeniable engineering metrics.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

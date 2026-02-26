@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #2026-CSD</p>
+                <p>STATUS: <span style="color: var(--rust)">CONFIDENTIAL</span></p>
+                <p>LOCATION: KARNATAKA, IN</p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content">
+            <div class="stamp stamp-red" style="top: 150px; right: 10%; z-index: 100;">TOP SECRET</div>
+
+            <div class="dossier-header">
+                <h2 style="border: none; margin: 0;">PROJECT DOSSIER: <span class="highlight-tape">THE CLIMATE WITNESS</span></h2>
+                <p class="typewriter-body" style="font-size: 1rem; color: var(--gold);">SERIAL NO: 882-ARCH-AI</p>
+            </div>
+
+            <div class="evidence-grid" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; margin-top: 3rem;">
+                
+                <div class="visual-evidence">
+                    <div class="burnt-frame" style="width: 100%; height: 350px; transform: rotate(-2deg);">
+                        <div class="burnt-edges"></div>
+                        <img src="project-image.jpg" alt="Evidence" class="subject-photo">
+                    </div>
+                    <div class="typewriter-body" style="margin-top: 2rem; font-size: 0.9rem; border: 1px dashed var(--paper-dim); padding: 1rem;">
+                        <p><strong>RECONNAISSANCE NOTE:</strong> Captured during final deployment. Note the integration of AI sensors at the base of the heritage structure.</p>
+                    </div>
+                </div>
+
+                <div class="intel-report">
+                    <h3 style="color: var(--gold); font-family: var(--font-headline); margin-bottom: 1rem;">I. THE OBJECTIVE</h3>
+                    <p class="typewriter-body">The suspect developed a "Live Archaeological Risk Monitor." Purpose: To intercept environmental threats before they compromise ancient structures. It operates in the shadows, listening to the climate.</p>
+                    
+                    <h3 style="color: var(--gold); font-family: var(--font-headline); margin-top: 2rem; margin-bottom: 1rem;">II. WEAPONS OF CHOICE (TECH STACK)</h3>
+                    <div class="typewriter-body" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span class="redacted" style="color: var(--paper-aged)">PYTHON</span>
+                        <span class="redacted" style="color: var(--paper-aged)">TENSORFLOW</span>
+                        <span class="redacted" style="color: var(--paper-aged)">IOT-SENSORS</span>
+                    </div>
+
+                    <h3 style="color: var(--gold); font-family: var(--font-headline); margin-top: 2rem; margin-bottom: 1rem;">III. THE BREAKTHROUGH</h3>
+                    <p class="typewriter-body">Using deep learning, the suspect successfully predicted erosion patterns with 92% accuracy. The "Archaeo-Climate" system represents a significant shift in heritage preservation tactics.</p>
+                    
+                    <div style="margin-top: 3rem;">
+                        <a href="https://github.com" class="btn">ACCESS SOURCE CODE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer><p>DESTRUCTION OF THIS FILE IS MANDATORY AFTER READING // 2026</p></footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

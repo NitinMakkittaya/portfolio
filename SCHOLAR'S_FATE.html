@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #A</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #2026-CSD</p>
+                <p>STATUS: <span style="color: var(--rust)">CONFIDENTIAL</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">CLOSED / DEPLOYED</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">LEVEL 3 - CONFIDENTIAL</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">TOP SECRET</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #001: <span class="highlight-tape">SCHOLAR'S FATE</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">The objective was clear: eliminate the guesswork from student performance. We needed a system capable of foreseeing which subjects were on a trajectory toward academic failure and which would pass. I built a predictive web interface to crack their patterns, utilizing historical data to forecast future outcomes.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Core Engine:</strong> Python, Scikit-Learn (Logistic Regression model)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Data Processing:</strong> Pandas, NumPy</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Front (UI/Backend):</strong> Flask, HTML/CSS</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Data Preservation:</strong> Joblib (Model and Scaler serialization)</li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">To get a prediction, the system demands three key pieces of intel on the suspect (student):</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Study Hours:</strong> The amount of time invested off-the-grid.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Attendance:</strong> Their physical presence on the record.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Previous Marks:</strong> Their historical track record.</li>
+                </ul>
+                <p class="typewriter-body doc-text" style="margin-top: 1rem;">Once the intel is submitted via the web interface, the system processes it. The raw data is passed through a pre-trained StandardScaler to normalize the inputs, ensuring no single variable skews the investigation. Finally, it's fed into a Logistic Regression model trained on historical cases.</p>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">The application immediately returns a definitive ruling: <strong>PASS</strong> or <strong>FAIL</strong>, allowing for preemptive intervention before the academic term concludes.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Training Protocol:</strong> Utilized an 80/20 train-test split on the initial students.csv database to ensure the model's accuracy on unseen subjects.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Seamless Interface:</strong> A lightweight, gradient-styled HTML/CSS dashboard designed for rapid data entry and instant processing.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
