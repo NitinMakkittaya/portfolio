@@ -148,30 +148,34 @@ window.addEventListener('DOMContentLoaded', () => {
         const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
         let iterations = 0;
         
-        // Wait 3.5 seconds for the previous CSS animations to finish before decrypting
-        setTimeout(() => {
-            const interval = setInterval(() => {
-                scrambleTarget.innerText = finalName.split('')
-                    .map((letter, index) => {
-                        // If it's a space, keep it a space
-                        if (letter === " ") return " ";
-                        // Reveal the correct letter if we've passed its index
-                        if (index < iterations) {
-                            return finalName[index];
-                        }
-                        // Otherwise, return a random glitch character
-                        return characters[Math.floor(Math.random() * characters.length)];
-                    })
-                    .join('');
-                
-                // Stop the interval when we've spelled the whole name
-                if (iterations >= finalName.length) {
-                    clearInterval(interval);
+  // Faster Decryption Animation
+setTimeout(() => {
+
+    const interval = setInterval(() => {
+
+        scrambleTarget.innerText = finalName
+            .split("")
+            .map((letter, index) => {
+
+                if (letter === " ") return " ";
+
+                if (index < iterations) {
+                    return finalName[index];
                 }
-                
-                // The fraction controls the speed of the decryption (lower = slower)
-                iterations += 1 / 3; 
-            }, 30); // 30ms between letter swaps
-        }, 3500); 
+
+                return characters[Math.floor(Math.random() * characters.length)];
+
+            })
+            .join("");
+
+        if (iterations >= finalName.length) {
+            clearInterval(interval);
+        }
+
+        iterations += 1.2;
+
+    }, 12);
+
+}, 1500);
     }
 });

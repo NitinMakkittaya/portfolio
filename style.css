@@ -666,13 +666,27 @@ body.stamped-effect {
 
 @keyframes blink { 50% { opacity: 0; } }
 
-/* --- CSS SEQUENCE ANIMATIONS --- */
-/* This makes the lines appear one by one like a computer booting up */
-.type-1 { animation: sysReveal 0.1s forwards 0.5s; }
-.type-2 { animation: sysReveal 0.1s forwards 1.5s; }
-.type-3 { animation: sysReveal 0.1s forwards 2.5s; }
-.type-4 { animation: sysReveal 0.1s forwards 6.5s; } /* Waits for decrypt */
-.type-5 { animation: sysReveal 0.1s forwards 7.5s; }
+/* ===== Faster Intro Sequence ===== */
+
+.type-1 {
+    animation: sysReveal 0.08s forwards 0.2s;
+}
+
+.type-2 {
+    animation: sysReveal 0.08s forwards 0.7s;
+}
+
+.type-3 {
+    animation: sysReveal 0.08s forwards 1.2s;
+}
+
+.type-4 {
+    animation: sysReveal 0.08s forwards 2.2s;
+}
+
+.type-5 {
+    animation: sysReveal 0.08s forwards 2.6s;
+}
 
 @keyframes sysReveal {
     from { opacity: 0; }
