@@ -8,6 +8,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
     
+    <!-- Keep your main style sheet -->
     <link rel="stylesheet" href="style.css">
 
     <!-- PageFlip Library -->
@@ -15,78 +16,202 @@
 
     <style>
         /* =========================================
-           4D MINI BOOK TRIGGER (On the Desk)
+           TRUE 3D BOOK TRIGGER (Desk Environment)
            ========================================= */
         .photo-evidence-container {
             display: flex; 
             justify-content: center; 
             align-items: center;
-            perspective: 1200px;
+            /* Creates the 3D space depth */
+            perspective: 1200px; 
+            padding: 40px;
         }
 
-        .mini-book-trigger {
-            width: 240px;
-            height: 320px;
-            background: linear-gradient(135deg, #3b2818 0%, #1f140c 100%);
-            border-radius: 4px 12px 12px 4px;
+        .real-3d-book {
             position: relative;
+            width: 230px;
+            height: 310px;
             cursor: pointer;
+            /* Preserve 3D instructs the browser to render children in actual 3D space */
             transform-style: preserve-3d;
-            transform: rotateX(25deg) rotateY(-15deg) rotateZ(5deg);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-            
-            box-shadow: 
-                inset 8px 0 15px rgba(0,0,0,0.8),
-                inset -2px 0 5px rgba(255,255,255,0.05),
-                1px 1px 0px #1a1008, 2px 2px 0px #1a1008, 3px 3px 0px #1a1008,
-                4px 4px 0px #e3dac9, 5px 5px 0px #e3dac9, 6px 6px 0px #d5ccba,
-                7px 7px 0px #e3dac9, 8px 8px 0px #d5ccba, 9px 9px 0px #e3dac9,
-                10px 10px 0px #111, 11px 11px 0px #0a0a0a,
-                30px 40px 40px rgba(0,0,0,0.9);
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            border-left: 4px solid #111;
+            /* Position the book dynamically on the desk */
+            transform: rotateX(30deg) rotateY(-20deg) rotateZ(5deg);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             will-change: transform;
         }
 
-        .mini-book-trigger::before {
-            content: '';
+        .real-3d-book:hover {
+            transform: rotateX(20deg) rotateY(-10deg) rotateZ(0deg) translateZ(40px);
+        }
+
+        /* --- THE 3D FACES OF THE BOOK --- */
+        
+        /* 1. The Front Leather Cover */
+        .book-front {
             position: absolute;
-            left: 15px;
-            top: 0; bottom: 0; width: 4px;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: #2b1d12; /* Coffee Brown */
+            /* Leather/noise texture */
+            background-image: 
+                linear-gradient(115deg, rgba(255,255,255,0.05) 0%, transparent 40%, rgba(0,0,0,0.5) 100%),
+                url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.08"/%3E%3C/svg%3E');
+            border-radius: 3px 8px 8px 3px;
+            /* Lift front cover up to create thickness */
+            transform: translateZ(20px);
+            box-shadow: inset 5px 0 15px rgba(0,0,0,0.8), inset -1px 0 2px rgba(255,255,255,0.1);
+            z-index: 10;
         }
 
-        .mini-book-trigger:hover {
-            transform: rotateX(5deg) rotateY(-5deg) rotateZ(0deg) translateY(-20px) translateZ(40px);
-            box-shadow: 
-                inset 8px 0 15px rgba(0,0,0,0.8), inset -2px 0 5px rgba(255,255,255,0.1),
-                1px 1px 0px #1a1008, 2px 2px 0px #1a1008, 3px 3px 0px #e3dac9,
-                4px 4px 0px #d5ccba, 5px 5px 0px #e3dac9, 6px 6px 0px #111,
-                45px 55px 50px rgba(0,0,0,0.9);
+        /* 2. The Back Cover (Creates the hardcover overhang lip) */
+        .book-back {
+            position: absolute;
+            width: 102%;
+            height: 103%;
+            bottom: -1.5%;
+            right: -1%;
+            background-color: #1a100a;
+            border-radius: 3px 8px 8px 3px;
+            transform: translateZ(0px);
+            box-shadow: 25px 35px 40px rgba(0,0,0,0.9); /* Desk shadow cast by back cover */
+            z-index: 1;
         }
 
-        .book-title-gold {
+        /* 3. The Left Spine */
+        .book-spine {
+            position: absolute;
+            width: 20px; /* Book thickness */
+            height: 103%;
+            bottom: -1.5%;
+            left: 0;
+            background: linear-gradient(to right, #110a05, #2b1d12 40%, #110a05);
+            /* Rotate to face left */
+            transform: rotateY(-90deg);
+            transform-origin: left;
+            border-radius: 3px 0 0 3px;
+            z-index: 5;
+        }
+
+        /* 4. The Right Page Edges */
+        .book-pages-right {
+            position: absolute;
+            width: 17px;
+            height: 96%;
+            top: 2%;
+            right: 0;
+            background: #e3dac9;
+            /* Page ridge lines */
+            background-image: repeating-linear-gradient(to right, transparent 0, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px);
+            /* Rotate to face right */
+            transform: rotateY(90deg);
+            transform-origin: right;
+            box-shadow: inset 0 10px 20px rgba(0,0,0,0.4), inset 0 -10px 20px rgba(0,0,0,0.4);
+            z-index: 5;
+        }
+
+        /* 5. The Bottom Page Edges */
+        .book-pages-bottom {
+            position: absolute;
+            width: 98%;
+            height: 17px;
+            bottom: 0;
+            left: 1%;
+            background: #e3dac9;
+            background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px);
+            /* Rotate to face down */
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+            box-shadow: inset 15px 0 20px rgba(0,0,0,0.5);
+            z-index: 5;
+        }
+
+        /* --- IMMERSIVE COVER DECORATIONS --- */
+        
+        .evidence-label {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            background: #d1d4c2; /* Aged green/beige paper */
+            padding: 15px 20px;
+            width: 75%;
+            box-shadow: 1px 2px 4px rgba(0,0,0,0.4);
+            border-radius: 1px;
+            z-index: 2;
+        }
+
+        .book-title-text {
+            color: #111;
+            font-family: 'Courier Prime', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        /* Realistic Masking Tape */
+        .tape {
+            position: absolute;
+            background: rgba(220, 205, 170, 0.65); /* Translucent beige */
+            backdrop-filter: blur(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2), inset 0 0 5px rgba(0,0,0,0.1);
+            height: 18px;
+            width: 60px;
+            z-index: 3;
+            /* Torn edges */
+            border-left: 1px dashed rgba(0,0,0,0.2);
+            border-right: 1px dashed rgba(0,0,0,0.2);
+        }
+        .tape-top { top: -10px; left: 20px; transform: rotate(-4deg); }
+        .tape-bottom { bottom: -10px; right: 20px; transform: rotate(5deg); }
+
+        /* Faded Ink Stamp */
+        .case-stamp {
+            position: absolute;
+            bottom: 80px;
+            left: 30px;
+            color: #1a1a1a;
+            border: 2px dashed #1a1a1a;
+            padding: 4px 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            opacity: 0.5;
+            transform: rotate(-3deg);
+            mix-blend-mode: multiply;
+        }
+
+        .action-prompt-text {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
             color: #d4af37;
             font-family: 'Courier Prime', monospace;
-            border: 2px solid #d4af37;
-            padding: 12px;
-            font-size: 1.3rem;
+            font-size: 0.8rem;
+            font-weight: bold;
             letter-spacing: 1px;
-            background: rgba(0,0,0,0.3);
-            text-shadow: 2px 2px 4px #000;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            transform: translateZ(10px);
+            opacity: 0.8;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        /* 3D Bookmark Ribbon dangling from bottom */
+        .bookmark-ribbon {
+            position: absolute;
+            bottom: -25px;
+            right: 40px;
+            width: 14px;
+            height: 40px;
+            background: #8a1313;
+            transform: translateZ(2px);
+            box-shadow: 2px 5px 5px rgba(0,0,0,0.5);
+            z-index: 0;
+            border-radius: 0 0 2px 2px;
         }
 
         /* =========================================
-           FULLSCREEN BOOK MODAL
+           FULLSCREEN INTERACTIVE FLIPBOOK MODAL
            ========================================= */
         .book-modal {
             position: fixed;
@@ -127,29 +252,17 @@
             will-change: transform;
         }
 
-        .flipbook {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* CRITICAL FIX: Forces borders to calculate inward, eliminating the spine gap */
-        .flipbook * {
-            box-sizing: border-box;
-        }
+        .flipbook { width: 100%; height: 100%; }
+        .flipbook * { box-sizing: border-box; }
 
         /* =========================================
-           SEAMLESS PAGE PHYSICS & STYLING
+           FLIPBOOK PAGE STYLING
            ========================================= */
-        .page {
-            background-color: #e3dac9;
-        }
-        .page[data-density="hard"] {
-            background-color: #2a1b10;
-        }
+        .page { background-color: #e3dac9; }
+        .page[data-density="hard"] { background-color: #2b1d12; }
 
         .page-content {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             overflow: hidden;
             position: relative;
             transform: translateZ(0);
@@ -157,126 +270,87 @@
             background-color: inherit;
         }
 
-        /* --- HYPER-REALISTIC COFFEE BROWN HARDBIND --- */
+        /* --- INSIDE COFFEE BROWN HARDBIND --- */
         .hardcover {
+            background-color: #2b1d12;
             background-image: 
-                linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)),
-                linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
-            background-size: 4px 4px;
-            background-position: 0 0, 2px 2px;
+                linear-gradient(115deg, rgba(255,255,255,0.02) 0%, transparent 40%, rgba(0,0,0,0.5) 100%),
+                url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
             color: #d4af37;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             padding: 40px;
-            /* Inset bevels for 3D solid edge lighting */
             box-shadow: inset -2px 2px 10px rgba(255,255,255,0.05), inset 2px -2px 10px rgba(0,0,0,0.5);
         }
 
-        /* FIXED BORDERS: Zero border and zero radius on the hinge edge prevents detaching */
-        
-        /* Page 0 (Front Cover - Right Page) -> Hinge is on the LEFT */
         .hardcover-front {
             border-top: 3px solid #3b2818;
-            border-right: 8px solid #0a0603;
-            border-bottom: 10px solid #050302;
+            border-right: 6px solid #0f0a05;
+            border-bottom: 8px solid #050302;
             border-left: 0; 
-            border-radius: 0 12px 12px 0;
+            border-radius: 0 8px 8px 0;
         }
-
-        /* Page 1 (Inside Front Cover - Left Page) -> Hinge is on the RIGHT */
         .hardcover-inside-front {
             border-top: 3px solid #3b2818;
-            border-left: 8px solid #0a0603;
-            border-bottom: 10px solid #050302;
+            border-left: 6px solid #0f0a05;
+            border-bottom: 8px solid #050302;
             border-right: 0;
-            border-radius: 12px 0 0 0;
+            border-radius: 8px 0 0 0;
         }
-
-        /* Page 6 (Inside Back Cover - Right Page) -> Hinge is on the LEFT */
         .hardcover-inside-back {
             border-top: 3px solid #3b2818;
-            border-right: 8px solid #0a0603;
-            border-bottom: 10px solid #050302;
+            border-right: 6px solid #0f0a05;
+            border-bottom: 8px solid #050302;
             border-left: 0;
-            border-radius: 0 12px 12px 0;
+            border-radius: 0 8px 8px 0;
         }
-
-        /* Page 7 (Back Cover - Left Page) -> Hinge is on the RIGHT */
         .hardcover-back {
             border-top: 3px solid #3b2818;
-            border-left: 8px solid #0a0603;
-            border-bottom: 10px solid #050302;
+            border-left: 6px solid #0f0a05;
+            border-bottom: 8px solid #050302;
             border-right: 0;
-            border-radius: 12px 0 0 12px;
+            border-radius: 8px 0 0 8px;
         }
 
-        /* Cover Decor */
-        .cover-inner-border {
-            border: 3px double #d4af37;
-            padding: 30px;
-            text-align: center;
-            width: 85%;
-            background: rgba(0,0,0,0.3);
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
-        }
-
-        .stamp-classified {
-            position: absolute;
-            top: 30px;
-            right: 20px;
-            color: #9b1c1c;
-            border: 5px solid #9b1c1c;
-            padding: 8px 18px;
-            font-family: 'Special Elite', cursive;
-            font-size: 1.8rem;
-            font-weight: 900;
-            transform: rotate(12deg);
-            mix-blend-mode: color-dodge;
-            pointer-events: none;
-            z-index: 5;
-            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
-        }
-
-        /* --- INTERIOR PAGES (SOFT) --- */
+        /* --- INTERNAL WEATHERED SHEETS --- */
         .soft-page {
             padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+            background-color: #e3dac9;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.06"/%3E%3C/svg%3E');
         }
 
-        /* FIXED SPINE SHADOWS: Tight, crisp linear gradients instead of massive blurry box-shadows */
+        /* Sharp center spine shadows (No transparent gaps) */
         .stf__item.--right .page-content::after {
             content: '';
             position: absolute;
-            top: 0; bottom: 0; left: 0; width: 25px;
-            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.05) 40%, transparent 100%);
+            top: 0; bottom: 0; left: 0; width: 30px;
+            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 30%, transparent 100%);
             pointer-events: none;
             z-index: 10;
         }
-
         .stf__item.--left .page-content::after {
             content: '';
             position: absolute;
-            top: 0; bottom: 0; right: 0; width: 25px;
-            background: linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.05) 40%, transparent 100%);
+            top: 0; bottom: 0; right: 0; width: 30px;
+            background: linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 30%, transparent 100%);
             pointer-events: none;
             z-index: 10;
         }
 
-        /* Corner rounding for soft pages */
-        .stf__item.--right .soft-page { border-radius: 0 6px 6px 0; }
-        .stf__item.--left .soft-page { border-radius: 6px 0 0 6px; }
+        .stf__item.--right .soft-page { border-radius: 0 4px 4px 0; }
+        .stf__item.--left .soft-page { border-radius: 4px 0 0 4px; }
 
         .sketch-img {
             max-width: 100%;
             max-height: 75%;
             object-fit: contain;
             margin: auto;
-            filter: contrast(1.3) brightness(0.9) grayscale(100%);
+            filter: contrast(1.25) brightness(0.92) grayscale(100%);
             mix-blend-mode: multiply;
             transform: translateZ(0); 
             will-change: filter;
@@ -301,7 +375,6 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
-
         .stf__item.--right .page-number { right: 30px; }
         .stf__item.--left .page-number { left: 30px; }
     </style>
@@ -335,7 +408,7 @@
                     <h1>THE <span class="highlight-tape">DIGITAL</span><br>DETECTIVE.</h1>
                     
                     <div class="typewriter-body">
-                        <p>
+                         <p>
                             The subject is a 3rd Year CSD Student at AIET. Known to 
                             operate in the shadows of <span class="redacted">THE LIBRARY</span>.
                             Subject demonstrates unusual excitement when encountering segmentation faults. Remains calm under high-pressure deployment scenarios. Prefers structured chaos (a.k.a. clean architecture).
@@ -350,15 +423,28 @@
                     </div>
                 </div>
 
-                <!-- 4D MINI BOOK TRIGGER ON DESK -->
+                <!-- NEW CSS 3D PRISM BOOK TRIGGER -->
                 <div class="photo-evidence-container">
-                    <div id="open-book-btn" class="mini-book-trigger">
-                        <div class="book-title-gold">
-                            <strong>OP: SKETCH<br>BOOK</strong>
+                    <div id="open-book-btn" class="real-3d-book">
+                        
+                        <!-- Front Face (Leather + Label) -->
+                        <div class="book-front">
+                            <div class="evidence-label">
+                                <div class="tape tape-top"></div>
+                                <div class="book-title-text">FORENSIC SKETCH<br>ARCHIVE</div>
+                                <div class="tape tape-bottom"></div>
+                            </div>
+                            <div class="case-stamp">CASE #003</div>
+                            <p class="action-prompt-text">[ CLICK TO EXAMINE ]</p>
                         </div>
-                        <p style="color: #aaa; font-family: 'Courier Prime', monospace; font-size: 0.85rem; margin-top: 20px; font-weight: bold;">
-                            [ CLICK TO EXAMINE ]
-                        </p>
+                        
+                        <!-- The 3D Edges mapped into space -->
+                        <div class="book-spine"></div>
+                        <div class="book-pages-right"></div>
+                        <div class="book-pages-bottom"></div>
+                        <div class="book-back"></div>
+                        <div class="bookmark-ribbon"></div>
+
                     </div>
                 </div>
                 
@@ -376,12 +462,11 @@
         <div class="flipbook-container">
             <div id="flipbook" class="flipbook">
 
-                <!-- PAGE 0: Front Cover (Right Page, Hinge Left) -->
+                <!-- PAGE 0: Front Cover -->
                 <div class="page" data-density="hard">
                     <div class="page-content hardcover hardcover-front">
-                        <div class="stamp-classified">CLASSIFIED</div>
-                        <div class="cover-inner-border">
-                            <h1 style="font-family: 'Courier Prime', monospace; margin: 0; font-size: 2.2rem; line-height: 1.1;">OPERATION:<br>CANVAS CHAMELEON</h1>
+                        <div style="border: 2px solid #d4af37; padding: 30px; text-align: center; width: 85%; background: rgba(0,0,0,0.4);">
+                            <h1 style="font-family: 'Courier Prime', monospace; margin: 0; font-size: 2.2rem; line-height: 1.1;">FORENSIC SKETCH<br>ARCHIVE</h1>
                             <div style="width: 100%; height: 2px; background: #d4af37; margin: 25px 0;"></div>
                             <p style="font-family: 'Courier Prime', monospace; font-size: 1rem; color: #b8955a; font-weight: bold;">
                                 ARTIST PROFILE:<br>NITIN MAKKITTAYA
@@ -390,16 +475,16 @@
                     </div>
                 </div>
 
-                <!-- PAGE 1: Inside Front Cover (Left Page, Hinge Right) -->
+                <!-- PAGE 1: Inside Front Cover -->
                 <div class="page" data-density="hard">
                     <div class="page-content hardcover hardcover-inside-front">
                         <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-                            <p style="font-family: 'Courier Prime', monospace; opacity: 0.4; font-weight: bold; color: #e3dac9;">[ PHYSICAL EVIDENCE LOG ]</p>
+                            <p style="font-family: 'Courier Prime', monospace; opacity: 0.35; font-weight: bold; color: #e3dac9; letter-spacing: 1px;">[ VERIFIED SOURCE MATERIAL ]</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- PAGE 2: Sketch 1 (Right Page) -->
+                <!-- PAGE 2: Sketch 1 -->
                 <div class="page">
                     <div class="page-content soft-page">
                         <img src="images/sketch1.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
@@ -408,7 +493,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 3: Sketch 2 (Left Page) -->
+                <!-- PAGE 3: Sketch 2 -->
                 <div class="page">
                     <div class="page-content soft-page">
                         <img src="images/sketch2.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
@@ -417,7 +502,7 @@
                     </div>
                 </div>
 
-                <!-- PAGE 4: Sketch 3 (Right Page) -->
+                <!-- PAGE 4: Sketch 3 -->
                 <div class="page">
                     <div class="page-content soft-page">
                         <img src="images/sketch3.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
@@ -426,24 +511,24 @@
                     </div>
                 </div>
 
-                <!-- PAGE 5: Blank Page (Left Page) -->
+                <!-- PAGE 5: Blank Layout Balancer -->
                 <div class="page">
                     <div class="page-content soft-page">
-                        <p style="font-family: 'Courier Prime', monospace; opacity: 0.3; text-align: center; margin-top: auto; font-weight: bold;">[ END OF LOG ]</p>
+                        <p style="font-family: 'Courier Prime', monospace; opacity: 0.3; text-align: center; margin-top: auto; font-weight: bold;">[ END OF RECORD ]</p>
                         <div class="page-number">04</div>
                     </div>
                 </div>
 
-                <!-- PAGE 6: Inside Back Cover (Right Page, Hinge Left) -->
+                <!-- PAGE 6: Inside Back Cover -->
                 <div class="page" data-density="hard">
                     <div class="page-content hardcover hardcover-inside-back"></div>
                 </div>
 
-                <!-- PAGE 7: Back Cover (Left Page, Hinge Right) -->
+                <!-- PAGE 7: Back Cover -->
                 <div class="page" data-density="hard">
                     <div class="page-content hardcover hardcover-back">
-                        <div style="border: 2px solid #b8955a; padding: 20px;">
-                            <p style="font-family: 'Courier Prime', monospace; color: #b8955a; font-weight: bold; margin: 0;">// PROPERTY OF DEPT. OF INVESTIGATION</p>
+                        <div style="border: 2px solid #886535; padding: 20px; width: 80%; text-align: center;">
+                            <p style="font-family: 'Courier Prime', monospace; color: #886535; font-weight: bold; margin: 0; font-size: 0.85rem;">// PROPERTY OF DEPT. OF INVESTIGATION</p>
                         </div>
                     </div>
                 </div>
@@ -452,7 +537,6 @@
         </div>
     </div>
 
-    <!-- Original main script -->
     <script src="script.js"></script>
 
     <!-- Flipbook Initialization Logic -->
@@ -480,9 +564,8 @@
                         minHeight: 420,
                         maxHeight: 800,
                         showCover: true,     
-                        /* FIXED: Lowered dynamic shadow opacity to stop the ugly black smudge */
                         maxShadowOpacity: 0.2, 
-                        flippingTime: 1200,    
+                        flippingTime: 1100,    
                         usePortrait: false,    
                         mobileScrollSupport: true
                     }
@@ -491,7 +574,6 @@
                 pageFlip.loadFromHTML(document.querySelectorAll(".page"));
                 bookInitialized = true;
             } else {
-                // Instantly snaps back to the front cover when reopened
                 setTimeout(() => {
                     pageFlip.update();
                     if (pageFlip.getCurrentPageIndex() !== 0) {
@@ -501,7 +583,6 @@
             }
         });
 
-        // Close modal
         closeOverlay.addEventListener("click", function () {
             modal.classList.add("hidden");
         });
