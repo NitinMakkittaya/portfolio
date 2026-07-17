@@ -4,13 +4,311 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTFOLIO | Case File #003</title>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
+
+    <!-- PageFlip Library -->
+    <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+
+    <style>
+        /* =========================================
+           4D MINI BOOK TRIGGER (On the Desk)
+           ========================================= */
+        .photo-evidence-container {
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            perspective: 1200px;
+        }
+
+        .mini-book-trigger {
+            width: 240px;
+            height: 320px;
+            background: linear-gradient(135deg, #3b2818 0%, #1f140c 100%);
+            border-radius: 4px 12px 12px 4px;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transform: rotateX(25deg) rotateY(-15deg) rotateZ(5deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            
+            box-shadow: 
+                inset 8px 0 15px rgba(0,0,0,0.8),
+                inset -2px 0 5px rgba(255,255,255,0.05),
+                1px 1px 0px #1a1008, 2px 2px 0px #1a1008, 3px 3px 0px #1a1008,
+                4px 4px 0px #e3dac9, 5px 5px 0px #e3dac9, 6px 6px 0px #d5ccba,
+                7px 7px 0px #e3dac9, 8px 8px 0px #d5ccba, 9px 9px 0px #e3dac9,
+                10px 10px 0px #111, 11px 11px 0px #0a0a0a,
+                30px 40px 40px rgba(0,0,0,0.9);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-left: 4px solid #111;
+            will-change: transform;
+        }
+
+        .mini-book-trigger::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0; bottom: 0; width: 4px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+            border-radius: 50%;
+        }
+
+        .mini-book-trigger:hover {
+            transform: rotateX(5deg) rotateY(-5deg) rotateZ(0deg) translateY(-20px) translateZ(40px);
+            box-shadow: 
+                inset 8px 0 15px rgba(0,0,0,0.8), inset -2px 0 5px rgba(255,255,255,0.1),
+                1px 1px 0px #1a1008, 2px 2px 0px #1a1008, 3px 3px 0px #e3dac9,
+                4px 4px 0px #d5ccba, 5px 5px 0px #e3dac9, 6px 6px 0px #111,
+                45px 55px 50px rgba(0,0,0,0.9);
+        }
+
+        .book-title-gold {
+            color: #d4af37;
+            font-family: 'Courier Prime', monospace;
+            border: 2px solid #d4af37;
+            padding: 12px;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px #000;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            transform: translateZ(10px);
+        }
+
+        /* =========================================
+           FULLSCREEN BOOK MODAL
+           ========================================= */
+        .book-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s ease, visibility 0s;
+            perspective: 2000px;
+        }
+
+        .book-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+
+        .book-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            will-change: opacity;
+        }
+
+        .flipbook-container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 1000px;
+            height: 85vh;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,1));
+            transform: translateZ(0); 
+            will-change: transform;
+        }
+
+        .flipbook {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* CRITICAL FIX: Forces borders to calculate inward, eliminating the spine gap */
+        .flipbook * {
+            box-sizing: border-box;
+        }
+
+        /* =========================================
+           SEAMLESS PAGE PHYSICS & STYLING
+           ========================================= */
+        .page {
+            background-color: #e3dac9;
+        }
+        .page[data-density="hard"] {
+            background-color: #2a1b10;
+        }
+
+        .page-content {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            background-color: inherit;
+        }
+
+        /* --- HYPER-REALISTIC COFFEE BROWN HARDBIND --- */
+        .hardcover {
+            background-image: 
+                linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1)),
+                linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%, rgba(0,0,0,0.1));
+            background-size: 4px 4px;
+            background-position: 0 0, 2px 2px;
+            color: #d4af37;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+            /* Inset bevels for 3D solid edge lighting */
+            box-shadow: inset -2px 2px 10px rgba(255,255,255,0.05), inset 2px -2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* FIXED BORDERS: Zero border and zero radius on the hinge edge prevents detaching */
+        
+        /* Page 0 (Front Cover - Right Page) -> Hinge is on the LEFT */
+        .hardcover-front {
+            border-top: 3px solid #3b2818;
+            border-right: 8px solid #0a0603;
+            border-bottom: 10px solid #050302;
+            border-left: 0; 
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Page 1 (Inside Front Cover - Left Page) -> Hinge is on the RIGHT */
+        .hardcover-inside-front {
+            border-top: 3px solid #3b2818;
+            border-left: 8px solid #0a0603;
+            border-bottom: 10px solid #050302;
+            border-right: 0;
+            border-radius: 12px 0 0 0;
+        }
+
+        /* Page 6 (Inside Back Cover - Right Page) -> Hinge is on the LEFT */
+        .hardcover-inside-back {
+            border-top: 3px solid #3b2818;
+            border-right: 8px solid #0a0603;
+            border-bottom: 10px solid #050302;
+            border-left: 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Page 7 (Back Cover - Left Page) -> Hinge is on the RIGHT */
+        .hardcover-back {
+            border-top: 3px solid #3b2818;
+            border-left: 8px solid #0a0603;
+            border-bottom: 10px solid #050302;
+            border-right: 0;
+            border-radius: 12px 0 0 12px;
+        }
+
+        /* Cover Decor */
+        .cover-inner-border {
+            border: 3px double #d4af37;
+            padding: 30px;
+            text-align: center;
+            width: 85%;
+            background: rgba(0,0,0,0.3);
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        }
+
+        .stamp-classified {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            color: #9b1c1c;
+            border: 5px solid #9b1c1c;
+            padding: 8px 18px;
+            font-family: 'Special Elite', cursive;
+            font-size: 1.8rem;
+            font-weight: 900;
+            transform: rotate(12deg);
+            mix-blend-mode: color-dodge;
+            pointer-events: none;
+            z-index: 5;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+        }
+
+        /* --- INTERIOR PAGES (SOFT) --- */
+        .soft-page {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
+        }
+
+        /* FIXED SPINE SHADOWS: Tight, crisp linear gradients instead of massive blurry box-shadows */
+        .stf__item.--right .page-content::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 0; width: 25px;
+            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.05) 40%, transparent 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .stf__item.--left .page-content::after {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; right: 0; width: 25px;
+            background: linear-gradient(to left, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.05) 40%, transparent 100%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Corner rounding for soft pages */
+        .stf__item.--right .soft-page { border-radius: 0 6px 6px 0; }
+        .stf__item.--left .soft-page { border-radius: 6px 0 0 6px; }
+
+        .sketch-img {
+            max-width: 100%;
+            max-height: 75%;
+            object-fit: contain;
+            margin: auto;
+            filter: contrast(1.3) brightness(0.9) grayscale(100%);
+            mix-blend-mode: multiply;
+            transform: translateZ(0); 
+            will-change: filter;
+        }
+
+        .sketch-caption {
+            font-size: 0.95rem;
+            color: #111;
+            margin-top: 15px;
+            border-top: 2px solid #666;
+            padding-top: 10px;
+            font-family: 'Courier Prime', monospace;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            font-family: 'Courier Prime', monospace;
+            color: #444;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .stf__item.--right .page-number { right: 30px; }
+        .stf__item.--left .page-number { left: 30px; }
+    </style>
 </head>
 <body>
     <div class="film-grain"></div>
     <canvas id="rain-canvas"></canvas>
-
     <div class="container">
         
         <div class="top-bar">
@@ -27,49 +325,187 @@
                 <a href="contact.html" class="nav-btn"><span class="tab-number">05</span> // CONTACT</a>
             </nav>
         </div>
+        
         <div class="folder-line"></div>
 
-       <section class="home-content">
-    <div class="hero-layout">
-        <div class="hero-text">
-            <p class="dept-label">DEPARTMENT OF INVESTIGATION</p>
-            <h1>THE <span class="highlight-tape">DIGITAL</span><br>DETECTIVE.</h1>
-            
-            <div class="typewriter-body">
-                <p>
-                    The subject is a 3rd Year CSD Student at AIET. Known to 
-                    operate in the shadows of <span class="redacted">THE LIBRARY</span>.Subject demonstrates unusual excitement when encountering segmentation faults.
-                    Remains calm under high-pressure deployment scenarios.
-                    Prefers structured chaos (a.k.a. clean architecture).
-                </p>
-                <br>
-                <p>
-                    Warning: Subject is highly creative and armed with 
-                    <span class="redacted">PYTHON</span> <span class="redacted">CODE</span>.
-                </p>
-            </div>
+        <section class="home-content">
+            <div class="hero-layout">
+                <div class="hero-text">
+                    <p class="dept-label">DEPARTMENT OF INVESTIGATION</p>
+                    <h1>THE <span class="highlight-tape">DIGITAL</span><br>DETECTIVE.</h1>
+                    
+                    <div class="typewriter-body">
+                        <p>
+                            The subject is a 3rd Year CSD Student at AIET. Known to 
+                            operate in the shadows of <span class="redacted">THE LIBRARY</span>.
+                            Subject demonstrates unusual excitement when encountering segmentation faults. Remains calm under high-pressure deployment scenarios. Prefers structured chaos (a.k.a. clean architecture).
+                        </p>
+                        <br>
+                        <p>
+                            Warning: Subject is highly creative and armed with <span class="redacted">PYTHON CODE</span>.
+                        </p>
+                    </div>
+                    <div style="margin-top: 3rem;">
+                        <a href="projects.html" class="btn">EXAMINE EVIDENCE</a>
+                    </div>
+                </div>
 
-            <div style="margin-top: 3rem;">
-                <a href="projects.html" class="btn">EXAMINE EVIDENCE</a>
+                <!-- 4D MINI BOOK TRIGGER ON DESK -->
+                <div class="photo-evidence-container">
+                    <div id="open-book-btn" class="mini-book-trigger">
+                        <div class="book-title-gold">
+                            <strong>OP: CANVAS<br>CHAMELEON</strong>
+                        </div>
+                        <p style="color: #aaa; font-family: 'Courier Prime', monospace; font-size: 0.85rem; margin-top: 20px; font-weight: bold;">
+                            [ CLICK TO EXAMINE ]
+                        </p>
+                    </div>
+                </div>
+                
             </div>
-        </div>
+        </section>
 
-        <div class="photo-evidence-container">
-            <div class="burnt-frame">
-                <div class="burnt-edges"></div>
-                <img src="photo1.jpg" alt="Subject Photo" class="subject-photo">
-                <div class="ink-stamp">CLASSIFIED</div>
-                <div class="stamp stamp-red" style="top: 20%; right: 10%; animation-delay: 0.8s;">WANTED</div>
-                <div class="stamp stamp-warning" style="bottom: 10%; left: 5%; animation-delay: 1.2s;">⚠️ APPROACH WITH CAUTION</div>
+    </div>
+
+    <!-- =========================================
+         FULLSCREEN BOOK MODAL
+         ========================================= -->
+    <div id="book-modal" class="book-modal hidden">
+        <div id="close-book" class="book-overlay"></div>
+        
+        <div class="flipbook-container">
+            <div id="flipbook" class="flipbook">
+
+                <!-- PAGE 0: Front Cover (Right Page, Hinge Left) -->
+                <div class="page" data-density="hard">
+                    <div class="page-content hardcover hardcover-front">
+                        <div class="stamp-classified">CLASSIFIED</div>
+                        <div class="cover-inner-border">
+                            <h1 style="font-family: 'Courier Prime', monospace; margin: 0; font-size: 2.2rem; line-height: 1.1;">OPERATION:<br>CANVAS CHAMELEON</h1>
+                            <div style="width: 100%; height: 2px; background: #d4af37; margin: 25px 0;"></div>
+                            <p style="font-family: 'Courier Prime', monospace; font-size: 1rem; color: #b8955a; font-weight: bold;">
+                                ARTIST PROFILE:<br>NITIN MAKKITTAYA
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 1: Inside Front Cover (Left Page, Hinge Right) -->
+                <div class="page" data-density="hard">
+                    <div class="page-content hardcover hardcover-inside-front">
+                        <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                            <p style="font-family: 'Courier Prime', monospace; opacity: 0.4; font-weight: bold; color: #e3dac9;">[ PHYSICAL EVIDENCE LOG ]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE 2: Sketch 1 (Right Page) -->
+                <div class="page">
+                    <div class="page-content soft-page">
+                        <img src="images/sketch1.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
+                        <div class="sketch-caption">EXHIBIT 01: Portrait Analysis</div>
+                        <div class="page-number">01</div>
+                    </div>
+                </div>
+
+                <!-- PAGE 3: Sketch 2 (Left Page) -->
+                <div class="page">
+                    <div class="page-content soft-page">
+                        <img src="images/sketch2.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
+                        <div class="sketch-caption">EXHIBIT 02: Light and Shadow</div>
+                        <div class="page-number">02</div>
+                    </div>
+                </div>
+
+                <!-- PAGE 4: Sketch 3 (Right Page) -->
+                <div class="page">
+                    <div class="page-content soft-page">
+                        <img src="images/sketch3.jpg" alt="Portrait Sketch" class="sketch-img" loading="lazy">
+                        <div class="sketch-caption">EXHIBIT 03: Subject Study</div>
+                        <div class="page-number">03</div>
+                    </div>
+                </div>
+
+                <!-- PAGE 5: Blank Page (Left Page) -->
+                <div class="page">
+                    <div class="page-content soft-page">
+                        <p style="font-family: 'Courier Prime', monospace; opacity: 0.3; text-align: center; margin-top: auto; font-weight: bold;">[ END OF LOG ]</p>
+                        <div class="page-number">04</div>
+                    </div>
+                </div>
+
+                <!-- PAGE 6: Inside Back Cover (Right Page, Hinge Left) -->
+                <div class="page" data-density="hard">
+                    <div class="page-content hardcover hardcover-inside-back"></div>
+                </div>
+
+                <!-- PAGE 7: Back Cover (Left Page, Hinge Right) -->
+                <div class="page" data-density="hard">
+                    <div class="page-content hardcover hardcover-back">
+                        <div style="border: 2px solid #b8955a; padding: 20px;">
+                            <p style="font-family: 'Courier Prime', monospace; color: #b8955a; font-weight: bold; margin: 0;">// PROPERTY OF DEPT. OF INVESTIGATION</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-</section>
 
-        <footer>
-            <p>CASE FILE CLOSED // 2026</p>
-        </footer>
-    </div>
+    <!-- Original main script -->
     <script src="script.js"></script>
+
+    <!-- Flipbook Initialization Logic -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("book-modal");
+        const openBtn = document.getElementById("open-book-btn");
+        const closeOverlay = document.getElementById("close-book");
+        
+        let bookInitialized = false;
+        let pageFlip;
+
+        openBtn.addEventListener("click", function () {
+            modal.classList.remove("hidden");
+
+            if (!bookInitialized) {
+                pageFlip = new St.PageFlip(
+                    document.getElementById("flipbook"),
+                    {
+                        width: 480,          
+                        height: 680,         
+                        size: "stretch",     
+                        minWidth: 315,
+                        maxWidth: 600,
+                        minHeight: 420,
+                        maxHeight: 800,
+                        showCover: true,     
+                        /* FIXED: Lowered dynamic shadow opacity to stop the ugly black smudge */
+                        maxShadowOpacity: 0.2, 
+                        flippingTime: 1200,    
+                        usePortrait: false,    
+                        mobileScrollSupport: true
+                    }
+                );
+
+                pageFlip.loadFromHTML(document.querySelectorAll(".page"));
+                bookInitialized = true;
+            } else {
+                // Instantly snaps back to the front cover when reopened
+                setTimeout(() => {
+                    pageFlip.update();
+                    if (pageFlip.getCurrentPageIndex() !== 0) {
+                        pageFlip.turnToPage(0);
+                    }
+                }, 300);
+            }
+        });
+
+        // Close modal
+        closeOverlay.addEventListener("click", function () {
+            modal.classList.add("hidden");
+        });
+    });
+    </script>
 </body>
 </html>
