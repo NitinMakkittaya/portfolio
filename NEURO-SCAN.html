@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #G</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #007-NEUROSCAN</p>
+                <p>STATUS: <span style="color: var(--rust)">ACTIVE COMPLIANCE SWEEP</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">HEADLESS ENGINE DEPLOYED</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">TIER 4 - FORENSIC AUDITORS</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">CLASSIFIED</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #007: <span class="highlight-tape">NEURO-SCAN — AI-Powered Web Accessibility Auditor</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">Countless digital properties operate in violation of structural accessibility codes, leaving critical barriers hidden in plain sight inside the DOM. The objective was to engineer an autonomous, headless interrogation engine capable of infiltrating live web targets, running deep WCAG compliance sweeps, and compiling ironclad forensic PDF dossiers. NEURO-SCAN strips away visual deception to audit the raw underlying markup and expose every accessibility violation on the syndicate's radar.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Infiltrator:</strong> Selenium WebDriver (Headless browser automation and DOM extraction unit)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Forensic Rulebook:</strong> Axe-Core Engine (Industry-standard WCAG accessibility rule injection and evaluation)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Command Precinct:</strong> React.js (Interactive investigator dashboard visualizing violation telemetry and severity metrics)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Dossier Press:</strong> Automated Scoring & PDF Report Generator (Compiles actionable compliance verdicts for legal and engineering review)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Repository Archive:</strong> <a href="https://github.com/NitinMakkittaya/NEURO-SCAN-Headless-Axe-Core-Accessibility-Engine" target="_blank" style="color: var(--rust); text-decoration: underline;">NEURO-SCAN-Headless-Axe-Core-Accessibility-Engine</a></li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">The operation executes a three-stage automated reconnaissance protocol against any target URL:</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Silent Entry (Headless Navigation):</strong> Once a target URL is entered into the React terminal, Selenium spins up a phantom headless browser instance, navigating through dynamic client-side rendering to capture the fully hydrated DOM tree.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Interrogation (Axe-Core Injection):</strong> The engine injects the Axe-core compliance payload directly into the active page context, cross-examining every node against WCAG 2.1 AA/AAA criteria—flagging missing ARIA labels, contrast failures, and broken keyboard traps.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Indictment (Scoring & PDF Generation):</strong> Violations are weighted by severity (Critical, Serious, Moderate, Minor) to compute a quantitative Accessibility Health Score, rendering live visual breakdowns on the React dashboard and exporting a stamped PDF audit report.</li>
+                </ul>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">NEURO-SCAN eliminates slow, error-prone manual accessibility checks. By fusing Selenium's headless automation with Axe-core's deterministic rule engine and a high-contrast React telemetry dashboard, the system delivers rapid, court-ready WCAG compliance audits on demand.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Automated WCAG Sweep Protocol:</strong> Full-spectrum testing across perceptual, operable, understandable, and robust accessibility standards.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Quantitative Severity Scoring:</strong> Algorithmic health grading that prioritizes critical DOM blockers for immediate remediation.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>One-Click Forensic PDF Dossiers:</strong> Generates portable, executive-ready compliance reports complete with affected DOM selectors and remediation blueprints.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

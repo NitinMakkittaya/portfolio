@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #M</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #013-KINETICFORGERY</p>
+                <p>STATUS: <span style="color: var(--rust)">TEMPORAL SYNTHESIS ACTIVE</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">VIDEO RENDERING PIPELINE ONLINE</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">TIER 5 - VFX SYNDICATE</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">CLASSIFIED</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #013: <span class="highlight-tape">Video-Based Neural Style Transfer Studio</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">Altering a single still photograph is amateur hour; rewriting the visual reality of an entire motion-picture surveillance feed requires industrial-grade neural firepower. The Video-Based Neural Style Transfer Studio was engineered to disassemble raw video streams into individual temporal frames, pass each frame through pre-trained deep-learning artistic models, and re-encode the altered sequence into a seamless, stylized motion picture.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Frame Dissector:</strong> OpenCV Video I/O & Deep Learning (DNN) Module (High-speed frame extraction, tensor blob conversion, and video stream encoding)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Artistic Forgers:</strong> Pre-Trained Fast Neural Style Transfer Networks (Multi-style convolutional models imposing distinct painterly brushstrokes)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Matrix Engine:</strong> Python & NumPy (High-throughput array manipulation, mean subtraction, and channel reconstruction)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Export Press:</strong> Automated Video Rendering & Codec Pipeline (Reassembles stylized frame buffers into downloadable MP4/AVI evidence reels)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Repository Archive:</strong> <a href="https://github.com/NitinMakkittaya/Video-Based-Neural-Style-Transfer-Pipeline" target="_blank" style="color: var(--rust); text-decoration: underline;">Video-Based-Neural-Style-Transfer-Pipeline</a></li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">The studio executes a frame-accurate temporal processing loop across any uploaded video reel:</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Temporal Extraction (Frame Slicing):</strong> OpenCV's `VideoCapture` pipeline intercepts the raw video file, extracting sequential frames while logging original frame-rate (FPS) and resolution metadata.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Neural Forward Pass:</strong> Each frame is normalized into a 4D tensor blob and pushed through the selected deep-learning style network, rewriting the frame's spatial textures with the chosen artistic signature.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Post-Processing & Video Reconstruction:</strong> The output tensor is de-normalized, clipped to valid RGB bounds, and piped directly into OpenCV's `VideoWriter`—exporting a fully rendered, stylized video file ready for deployment.</li>
+                </ul>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">The Video-Based Neural Style Transfer Studio elevates static neural art into kinetic VFX production. By combining OpenCV's deep learning inference engine with automated frame buffering and codec rendering, the pipeline transforms ordinary video footage into striking, multi-style visual sequences.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Frame-by-Frame Neural Synthesis:</strong> Applies complex convolutional style transfer across entire video timelines automatically.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Multi-Style Vault:</strong> Supports switching between multiple distinct pre-trained artistic models for varied visual aesthetics.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>End-to-End Video Rendering & Export:</strong> Handles frame ingestion, tensor transformation, and final video file compilation in a unified workflow.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

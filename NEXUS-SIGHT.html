@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #K</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #011-NEXUSSIGHT</p>
+                <p>STATUS: <span style="color: var(--rust)">GLOBAL DEFCON MONITOR</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">WEBSOCKET TELEMETRY LIVE</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">TIER 5 - CYBER COMMAND</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">CLASSIFIED</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #011: <span class="highlight-tape">NEXUS-Sight — Real-Time 3D Threat Visualization System</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">Flat server logs blind investigators to the geographic velocity of a coordinated cyber-assault. We required a war-room command center capable of projecting global network telemetry onto an interactive, three-dimensional orbital globe in real time. NEXUS-Sight ingests high-frequency WebSocket packet streams, simulates multi-vector cyber threats, and renders live ballistic attack arcs across a Three.js planetary grid.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Orbital Projection Rig:</strong> Three.js / WebGL (Hardware-accelerated 3D globe, atmospheric shaders, and geodesic attack trajectories)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Hot-Wire:</strong> Real-Time WebSockets (Sub-millisecond bi-directional telemetry streaming between the simulation core and client HUD)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The War-Game Engine:</strong> Cyber Threat Simulation Core (Generates synthetic DDoS salvos, intrusion vectors, and anomalous packet bursts)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Tactical HUD:</strong> Live Network Telemetry Overlay (Monitors bandwidth spikes, origin/target coordinates, and threat severity classifications)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Repository Archive:</strong> <a href="https://github.com/NitinMakkittaya/Nexus-sight-Simulation" target="_blank" style="color: var(--rust); text-decoration: underline;">Nexus-sight-Simulation</a></li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">NEXUS-Sight maintains continuous situational awareness through a synchronized 3D telemetry loop:</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Live WebSocket Wiretap:</strong> The client establishes a persistent WebSocket conduit to the telemetry backend, receiving continuous JSON payloads detailing source/destination coordinates, protocol signatures, and threat severity.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Geodesic Coordinate Projection:</strong> Latitude and longitude pairs are mathematically converted into 3D Cartesian vectors on the Three.js sphere, spawning animated spline arcs and impact rings at the target nodes.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Interactive Threat Simulation:</strong> Investigators can orbit, zoom, and interrogate specific geopolitical sectors while triggering simulated attack waves to stress-test visual telemetry response times.</li>
+                </ul>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">NEXUS-Sight transforms raw network telemetry into high-impact spatial intelligence. By combining Three.js 3D graphics with real-time WebSocket streaming and threat simulation, the platform delivers a responsive, cinematic cybersecurity operations center right in the browser.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Interactive Three.js Orbital Globe:</strong> Smooth 60-FPS 3D planetary rendering with custom lighting, coordinate pinning, and camera orbital controls.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Zero-Latency WebSocket Pipeline:</strong> Streams continuous live network telemetry without page reloads or polling overhead.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Synthetic Threat War-Gaming:</strong> Built-in simulation engine capable of modeling multi-vector global network breaches on demand.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

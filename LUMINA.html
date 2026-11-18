@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER | Exhibit #H</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="investigation-desk-bg">
+        <div class="desk-map-grid"></div>
+        
+        <div class="desk-item blood-stain s1"></div>
+        <div class="desk-item blood-stain s2"></div>
+        <div class="desk-item blood-stain s3"></div>
+
+        <div class="desk-item folder-stack"></div>
+        <div class="desk-item polaroid-photo p1"></div>
+        <div class="desk-item polaroid-photo p2"></div>
+        <div class="desk-item fingerprint-card"></div>
+        <div class="desk-item mag-lens"></div>
+    </div>
+
+    <div class="film-grain"></div>
+    <canvas id="rain-canvas"></canvas>
+    <svg id="red-threads-canvas" width="100%" height="100%"></svg>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="case-info">
+                <p>CASE FILE: #008-LUMINA</p>
+                <p>STATUS: <span style="color: var(--rust)">HEURISTIC RECONNAISSANCE</span></p>
+                <p>PROJECT STATUS: <span style="color: var(--rust)">NEURAL EVALUATOR ONLINE</span></p>
+                <p>CLEARANCE LEVEL: <span style="color: var(--rust)">TIER 4 - DESIGN FORENSICS</span></p>
+            </div>
+            <nav class="nav-tabs">
+                <a href="projects.html" class="nav-btn active"><span class="tab-number">←</span> BACK TO BOARD</a>
+            </nav>
+        </div>
+        <div class="folder-line"></div>
+
+        <section class="dossier-content centered-document">
+            <div class="stamp stamp-red" style="top: 20px; right: -20px; z-index: 100;">CLASSIFIED</div>
+            <div class="paperclip"></div>
+
+            <h2>Case File #008: <span class="highlight-tape">LUMINA — AI-Powered UI/UX Heuristics Analyzer</span></h2>
+            
+            <div class="intel-report">
+                <h3 class="doc-heading">III. INVESTIGATOR'S SUMMARY</h3>
+                <p class="typewriter-body doc-text">Substandard interfaces leave behind unmistakable forensic clues: fractured visual hierarchies, illegible typography scales, and clashing chrominance palettes. LUMINA was conceived as an AI-powered design detective capable of dissecting user interfaces with clinical precision. By combining automated visual heuristics with neural interface analysis, the system evaluates structural aesthetics, extracts dominant colour DNA, and issues actionable design remediation warrants.</p>
+
+                <h3 class="doc-heading">IV. EVIDENCE LOG (Tech Stack)</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: none; padding-left: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>The Neural Profiler:</strong> AI-Powered Interface Analysis Engine (Evaluates usability patterns and cognitive load)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Chrominance Lab:</strong> Colour Palette Extraction & Contrast Matrix (Isolates dominant hex signatures and verifies legibility ratios)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Structural Inspector:</strong> Visual Hierarchy & Typography Evaluator (Audits font pairings, scale cadence, and spatial alignment)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>The Command Terminal:</strong> Neon-Grade Heuristic Dashboard (High-contrast UI presenting granular scores and AI recommendations)</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Repository Archive:</strong> <a href="https://github.com/NitinMakkittaya/LUMINA-Neon-Grade-UI-Heuristics" target="_blank" style="color: var(--rust); text-decoration: underline;">LUMINA-Neon-Grade-UI-Heuristics</a></li>
+                </ul>
+
+                <h3 class="doc-heading">V. MODUS OPERANDI (How It Works)</h3>
+                <p class="typewriter-body doc-text">LUMINA subjects every submitted interface to a multi-layered forensic inspection:</p>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Visual Hierarchy & Typography Audit:</strong> The engine scans structural layout proportions, heading-to-body ratios, line heights, and scan-path flow to detect visual bottlenecks where user attention fractures.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Chrominance & Accessibility Extraction:</strong> LUMINA samples the interface to extract its core colour palette, testing foreground-to-background luminance ratios against strict accessibility thresholds.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>AI Remediation Directives:</strong> Synthesizing all heuristic telemetry, the AI core generates prioritized design improvement recommendations—pinpointing exact layout, typographic, and contrast adjustments required to elevate the UI.</li>
+                </ul>
+
+                <h3 class="doc-heading">VI. THE VERDICT</h3>
+                <p class="typewriter-body doc-text">LUMINA transforms subjective design critiques into objective, data-driven forensic science. Designers and developers gain an instant, automated second pair of eyes that catches hierarchy flaws, extracts production-ready colour palettes, and enforces accessibility before a single line of production UI ships.</p>
+
+                <h3 class="doc-heading">VII. CASE ASSETS</h3>
+                <ul class="typewriter-body doc-text" style="list-style-type: square; margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Automated Heuristic Scoring:</strong> Evaluates interfaces against established UI/UX principles with zero human bias.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Spectrographic Palette Extraction:</strong> Automatically distills complex visual screens into clean, weighted colour swatches and contrast verdicts.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>Actionable AI Design Counsel:</strong> Produces concrete, step-by-step UI/UX refactoring strategies tailored to the inspected screen.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
